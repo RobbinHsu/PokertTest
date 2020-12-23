@@ -6,22 +6,33 @@ namespace PokerTest
 {
     public class Poker
     {
+        private Dictionary<int, List<int>> _dictionary;
+        private List<int> _list;
+        private Random _rand;
+
         public Dictionary<int, List<int>> Licensing()
         {
-            var rand = new Random();
-            var list = Enumerable.Range(1, 53)
-                .OrderBy(num => rand.Next())
+            _rand = new Random();
+            _list = Enumerable.Range(1, 53)
+                .OrderBy(num => _rand.Next())
                 .ToList();
 
-            var dictionary = new Dictionary<int, List<int>>()
+            _dictionary = new Dictionary<int, List<int>>()
             {
-                {0, new List<int>(list.GetRange(0, 13))},
-                {1, new List<int>(list.GetRange(13, 13))},
-                {2, new List<int>(list.GetRange(26, 13))},
-                {3, new List<int>(list.GetRange(39, 13))},
+                {0, GetSortGroup(0, 13)},
+                {1, GetSortGroup(13, 13)},
+                {2, GetSortGroup(26, 13)},
+                {3, GetSortGroup(39, 13)},
             };
 
-            return dictionary;
+            return _dictionary;
+        }
+
+        private List<int> GetSortGroup(int index, int count)
+        {
+            var pokerGroup = new List<int>(_list.GetRange(index, count));
+            pokerGroup.MySort();
+            return pokerGroup;
         }
     }
 }

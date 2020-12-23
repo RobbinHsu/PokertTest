@@ -51,6 +51,12 @@ namespace PokerTest
             CompareGroup(2, 0, 1, 3);
         }
 
+        [Test]
+        public void Fourth_group_is_different_other_group()
+        {
+            CompareGroup(3, 0, 1, 2);
+        }
+
         private void CompareGroup(int firstGroup, int secondGroup, int thirdGroup, int fourthGroup)
         {
             _actual[firstGroup].ToExpectedObject().ShouldNotEqual(_actual[secondGroup]);

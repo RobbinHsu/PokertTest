@@ -84,8 +84,8 @@ namespace PokerTest
         private void WhenDifferentWithOtherGroup(int firstGroup, int secondGroup, int thirdGroup, int fourthGroup)
         {
             _actual[firstGroup].ToExpectedObject().ShouldNotEqual(_actual[secondGroup]);
-            _actual[firstGroup].ToExpectedObject().ShouldNotMatch(_actual[thirdGroup]);
-            _actual[firstGroup].ToExpectedObject().ShouldNotMatch(_actual[fourthGroup]);
+            _actual[firstGroup].ToExpectedObject().ShouldNotEqual(_actual[thirdGroup]);
+            _actual[firstGroup].ToExpectedObject().ShouldNotEqual(_actual[fourthGroup]);
         }
     }
 }

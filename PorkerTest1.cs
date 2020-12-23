@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 namespace PokerTest
 {
+    [TestFixture]
     public class Tests
     {
         private Dictionary<int, List<int>> _actual;
@@ -21,11 +22,52 @@ namespace PokerTest
         [Test]
         public void All_card_in_four_group()
         {
-            Assert.AreEqual(4, _actual.Count);
+            WhenHaveFourGroup();
+        }
+
+
+        [Test]
+        public void Different_results_every_time()
+        {
+            WhenEachResultIsDifferent();
         }
 
         [Test]
         public void Every_group_have_thirteen_cards()
+        {
+            WhenEveryGroupHaveThirteenCards();
+        }
+
+        [Test]
+        public void First_group_is_different_other_group()
+        {
+            WhenDifferentWithOtherGroup(0, 1, 2, 3);
+        }
+
+        [Test]
+        public void Fourth_group_is_different_other_group()
+        {
+            WhenDifferentWithOtherGroup(3, 0, 1, 2);
+        }
+
+        [Test]
+        public void Second_group_is_different_other_group()
+        {
+            WhenDifferentWithOtherGroup(1, 0, 2, 3);
+        }
+
+        [Test]
+        public void Third_group_is_different_other_group()
+        {
+            WhenDifferentWithOtherGroup(2, 0, 1, 3);
+        }
+
+        private void WhenEachResultIsDifferent()
+        {
+            _poker.Licensing().ToExpectedObject().ShouldNotEqual(_poker.Licensing());
+        }
+
+        private void WhenEveryGroupHaveThirteenCards()
         {
             Assert.AreEqual(13, _actual[0].Count);
             Assert.AreEqual(13, _actual[1].Count);
@@ -33,39 +75,13 @@ namespace PokerTest
             Assert.AreEqual(13, _actual[3].Count);
         }
 
-        [Test]
-        public void First_group_is_different_other_group()
+        private void WhenHaveFourGroup()
         {
-            CompareGroup(0, 1, 2, 3);
-        }
-
-        [Test]
-        public void Second_group_is_different_other_group()
-        {
-            CompareGroup(1, 0, 2, 3);
-        }
-
-        [Test]
-        public void Third_group_is_different_other_group()
-        {
-            CompareGroup(2, 0, 1, 3);
-        }
-
-        [Test]
-        public void Fourth_group_is_different_other_group()
-        {
-            CompareGroup(3, 0, 1, 2);
+            Assert.AreEqual(4, _actual.Count);
         }
 
 
-        [Test]
-        public void Different_results_every_time()
-        {
-            _poker.Licensing().ToExpectedObject().ShouldNotEqual(_poker.Licensing());
-        }
-
-
-        private void CompareGroup(int firstGroup, int secondGroup, int thirdGroup, int fourthGroup)
+        private void WhenDifferentWithOtherGroup(int firstGroup, int secondGroup, int thirdGroup, int fourthGroup)
         {
             _actual[firstGroup].ToExpectedObject().ShouldNotEqual(_actual[secondGroup]);
             _actual[firstGroup].ToExpectedObject().ShouldNotMatch(_actual[thirdGroup]);

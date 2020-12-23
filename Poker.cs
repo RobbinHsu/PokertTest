@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PokerTest
 {
@@ -8,11 +9,12 @@ namespace PokerTest
         {
             var dictionary = new Dictionary<int, List<int>>()
             {
-                {1, new List<int>()},
-                {2, new List<int>()},
-                {3, new List<int>()},
-                {4, new List<int>()},
+                {0, new List<int>(Enumerable.Range(1, 13))},
+                {1, new List<int>(Enumerable.Range(1, 13))},
+                {2, new List<int>(Enumerable.Range(1, 13))},
+                {3, new List<int>(Enumerable.Range(1, 13))},
             };
+
             return dictionary;
         }
     }

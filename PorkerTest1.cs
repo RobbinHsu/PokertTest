@@ -57,6 +57,14 @@ namespace PokerTest
             CompareGroup(3, 0, 1, 2);
         }
 
+
+        [Test]
+        public void Different_results_every_time()
+        {
+            _poker.Licensing().ToExpectedObject().ShouldNotEqual(_poker.Licensing());
+        }
+
+
         private void CompareGroup(int firstGroup, int secondGroup, int thirdGroup, int fourthGroup)
         {
             _actual[firstGroup].ToExpectedObject().ShouldNotEqual(_actual[secondGroup]);

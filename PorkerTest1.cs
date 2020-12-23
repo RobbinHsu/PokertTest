@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+using ExpectedObjects;
 using NUnit.Framework;
 
 namespace PokerTest
@@ -28,6 +31,19 @@ namespace PokerTest
             Assert.AreEqual(13, _actual[1].Count);
             Assert.AreEqual(13, _actual[2].Count);
             Assert.AreEqual(13, _actual[3].Count);
+        }
+
+        [Test]
+        public void First_group_is_different_other_group()
+        {
+            CompareGroup(0, 1, 2, 3);
+        }
+
+        private void CompareGroup(int firstGroup, int secondGroup, int thirdGroup, int fourthGroup)
+        {
+            _actual[firstGroup].ToExpectedObject().ShouldNotEqual(_actual[secondGroup]);
+            _actual[firstGroup].ToExpectedObject().ShouldNotMatch(_actual[thirdGroup]);
+            _actual[firstGroup].ToExpectedObject().ShouldNotMatch(_actual[fourthGroup]);
         }
     }
 }

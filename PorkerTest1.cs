@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace PokertTest
+namespace PokerTest
 {
     public class Tests
     {
@@ -10,9 +10,11 @@ namespace PokertTest
         }
 
         [Test]
-        public void Test1()
+        public void All_card_in_four_group()
         {
-            Assert.Pass();
+            var poker = new Poker();
+            var actual = poker.Licensing();
+            Assert.AreEqual(4, actual.Count);
         }
     }
 }

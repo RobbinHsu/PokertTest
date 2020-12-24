@@ -51,6 +51,15 @@ namespace PokerTest
         }
 
         [Test]
+        public void Porker_number_between_1_53()
+        {
+            PorkerGroupBetween1_53(0);
+            PorkerGroupBetween1_53(1);
+            PorkerGroupBetween1_53(2);
+            PorkerGroupBetween1_53(3);
+        }
+
+        [Test]
         public void Second_group_is_different_other_group()
         {
             WhenDifferentWithOtherGroup(1, 0, 2, 3);
@@ -60,6 +69,12 @@ namespace PokerTest
         public void Third_group_is_different_other_group()
         {
             WhenDifferentWithOtherGroup(2, 0, 1, 3);
+        }
+
+
+        private void PorkerGroupBetween1_53(int porkerGroupIndex)
+        {
+            Assert.IsTrue(_actual[porkerGroupIndex].Any(num => num > 0 && num < 53));
         }
 
         private void WhenEachResultIsDifferent()

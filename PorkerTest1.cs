@@ -51,6 +51,15 @@ namespace PokerTest
         }
 
         [Test]
+        public void No_duplicate_number()
+        {
+            NoDuplicateNumberInGroup(0);
+            NoDuplicateNumberInGroup(1);
+            NoDuplicateNumberInGroup(2);
+            NoDuplicateNumberInGroup(3);
+        }
+
+        [Test]
         public void Porker_number_between_1_53()
         {
             PorkerGroupBetween1_53(0);
@@ -69,6 +78,13 @@ namespace PokerTest
         public void Third_group_is_different_other_group()
         {
             WhenDifferentWithOtherGroup(2, 0, 1, 3);
+        }
+
+        private void NoDuplicateNumberInGroup(int index)
+        {
+            Assert.IsTrue(_actual[index]
+                .GroupBy(num => num)
+                .Any(grouping => grouping.Count() == 1));
         }
 
 
